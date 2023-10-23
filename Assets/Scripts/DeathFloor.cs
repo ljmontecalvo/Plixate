@@ -11,6 +11,7 @@ public class DeathFloor : MonoBehaviour
     {
         if (col.gameObject.tag == "Player") 
         {
+            GameObject.FindGameObjectWithTag("Sound Effects").GetComponent<SoundEffects>().PlayDeathSound();
             player.GetComponent<PlayerController>().ResetCharacterCallback1(); // Starts player death sequence.
             if (transform.position.x < -0.01f) 
             {
@@ -18,8 +19,6 @@ public class DeathFloor : MonoBehaviour
             } else if (transform.position.x > 0.01f) {
                 StartCoroutine(cameraSlide.SlideCamera(-1, 0, true));
             }
-
-            col.transform.position = new Vector3(col.GetComponent<PlayerController>().startingPos.x, col.GetComponent<PlayerController>().startingPos.y, 0);
         }
     }
 }

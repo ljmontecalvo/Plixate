@@ -13,10 +13,13 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     public Animator animator;
     [HideInInspector] public Vector3 startingPos;
+    public GameObject soundEffects;
 
     private void Start() 
     {
         startingPos = new Vector3(transform.position.x, transform.position.y, 0);
+
+        soundEffects = GameObject.FindGameObjectWithTag("Sound Effects");
     }
 
     private void Update()
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            soundEffects.GetComponent<SoundEffects>().PlayJumpSound();
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
@@ -85,6 +89,7 @@ public class PlayerController : MonoBehaviour
 
     public void ResetCharacterCallback2() { // Called after response from CameraSlide.
         GetComponent<SpriteRenderer>().enabled = true;
+        soundEffects.GetComponent<SoundEffects>().PlayRebirthSound();
         animator.Rebind();
         animator.Update(0f);
     }
