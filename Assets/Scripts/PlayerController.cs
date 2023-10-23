@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
         startingPos = new Vector3(transform.position.x, transform.position.y, 0);
     }
 
-    void Update()
+    private void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
 
@@ -70,5 +70,22 @@ public class PlayerController : MonoBehaviour
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
+    }
+
+    // Player Death Handler Functions
+    public void ResetCharacterCallback1() { // Init death sequence.
+        GetComponent<SpriteRenderer>().enabled = false;
+
+        if (Vector3.Distance(transform.position, Vector3.zero) < 10f) { // Skip to next function if camera hasn't moved.
+            ResetCharacterCallback2();
+        }
+
+        transform.position = startingPos; // Reset player's position.
+    }
+
+    public void ResetCharacterCallback2() { // Called after response from CameraSlide.
+        GetComponent<SpriteRenderer>().enabled = true;
+        animator.Rebind();
+        animator.Update(0f);
     }
 }

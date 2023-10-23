@@ -1876,11 +1876,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b02e9f3f3e3f244a08d770d6caf399, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1809189615}
-  speed: 0.01
-  delay: 0.0001
+  player: {fileID: 1809189610}
+  speed: 50
+  delay: 10
   disanceToSlide: 5.5
-  isChecking: 1
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
